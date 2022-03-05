@@ -1,32 +1,32 @@
-var curr = moment().add(1, 'hours').hour();
+var curHour = moment().hour();
 
 // current day displayed at the top of the calendar
 $('#today').text(moment().format('LLL'));
-// timeblocks for 9am - 5pm <- done in HTML
+$('.fullDay').hide();
 
-//color coded blocks for past present future
+
 $('.time-block').each(function() {
     var hour = $(this).data('hour');
-    var message = localStorage.getItem(hour);
-    $(this).find('.description').text(message);
-    $(this).addClass(hour > curr ? 'future' : hour < curr ? 'past' : 'present');
+    var eventMsg = localStorage.getItem(hour);
+    $(this).find('.description').text(eventMsg);
+    $(this).addClass(hour > curHour ? 'future' : hour < curHour ? 'past' : 'present');
 })
-// enter event into timeblock
 
-
-// save button will save to local storage
-// Only saving one item wtf
+//when save button is clicked, it is saved to local storage for that hour
 $('.time-block').on('click', '.saveBtn', function() {
-    var result = $(this).parent().find('.description').val();
-    localStorage.setItem($(this).parent().data('hour'), result);
+    var eventText = $(this).parent().find('.description').val();
+    localStorage.setItem($(this).parent().data('hour'), eventText);
 })
 
-
-//saved events persist
-
-
-
-
-
-
+// if show 24 hours is checked, project can be tested after 5pm
+$('#checkbox').on('click', function() {
+    if ($('#checkbox').is(':checked')) {
+        console.log('box is checked!');
+        $('.fullDay').show();
+    }
+    else {
+        console.log('box is unchecked!');
+        $('.fullDay').hide();
+    }
+});
 

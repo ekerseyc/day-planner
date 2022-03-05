@@ -63,13 +63,17 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  align-items: center;
 }
 
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+
+footer {
+  font-size: larger;
+  margin-top: 10px;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
 }
